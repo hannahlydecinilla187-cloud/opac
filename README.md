@@ -102,9 +102,53 @@ also redirects `/api/*` to `/`, so the raw PHP sources (plain includes, not
 endpoints) can never be requested directly; the JSON API lives at the
 `.json` URLs instead (`/search.json`, `/admin/books.json`).
 
-Since Vercel functions are stateless, you need a **remote MySQL** database —
-free options include [Aiven](https://aiven.io/), [Railway](https://railway.app/),
+Since Vercel functions are stateless, you need a **remote MySQL** database — free options include [Aiven](https://aiven.io/), [Railway](https://railway.app/),
 [Clever Cloud](https://www.clever-cloud.com/) or any hosted MySQL/MariaDB.
+
+### Using Railway for MySQL
+
+The connection code reads Railway's variables automatically
+(`api/includes/config.php` → `db_config()`), in this priority order:
+
+1. `DATABASE_URL` — a full URL (Railway's public URL works) or a raw PDO DSN
+2. `MYSQL_PUBLIC_HOST` + `MYSQL_PUBLIC_PORT` (+ `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE`)
+3. `MYSQLHOST` + `MYSQLPORT` (+ the three above)
+4. Local XAMPP defaults (no variables set)
+
+> **Important:** Railway's private host (`MYSQLHOST` = `mysql.railway.internal`)
+> is only reachable *inside Railway*. Your app runs on **Vercel**, so you must
+> connect through the **public** proxy — in Railway, open the MySQL service →
+> **Connect** tab → use the **public hostname / public URL** (e.g.
+> `caboo.proxy.rlwy.net:51047`), not the private one.
+
+**Setup:**
+
+1. In Railway, create a MySQL service and import `database.sql`
+   (your tables + sample books).
+2. Copy the public connection data from the service's **Connect** tab.
+3. In Vercel → Settings → Environment Variables, add **either**:
+
+   | Variable | Value (example) |
+   |---|---|
+   | `DATABASE_URL` | `mysql://user:password@caboo.proxy.rlwy.net:51047/railway` |
+
+   **or** the five Railway variables:
+
+   | Variable | Value (example) |
+   |---|---|
+   | `MYSQL_PUBLIC_HOST` | `caboo.proxy.rlwy.net` |
+   | `MYSQL_PUBLIC_PORT` | `51047` |
+   | `MYSQLUSER` | `root` |
+   | `MYSQLPASSWORD` | *(your Railway password)* |
+   | `MYSQLDATABASE` | `railway` |
+
+   *(Pasting the public host/port into `MYSQLHOST`/`MYSQLPORT` instead of the
+   `MYSQL_PUBLIC_*` names works too.)*
+
+4. Also set `SESSION_SECRET` — a long random string (e.g. from
+   `openssl rand -hex 32`) — then **redeploy**.
+
+### Other providers / general setup
 
 1. **Create the remote database** and import `database.sql` into it
    (most providers offer phpMyAdmin or a CLI for this).
@@ -125,6 +169,8 @@ free options include [Aiven](https://aiven.io/), [Railway](https://railway.app/)
 5. **Deploy** — `vercel.json` already configures the PHP runtime, the
    single-function routing and the `/api` shield redirect. Your catalog goes
    live at the deployment URL, the admin dashboard at `/admin`.
+   *(If the project is already imported — like after the earlier failed
+   deploy — just push the changes and Vercel rebuilds automatically.)*
 
 > **Note:** `vercel-php` is a community-maintained runtime (its repository was
 > archived in late 2026, but published versions like `0.9.0` keep working).
