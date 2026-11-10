@@ -1,0 +1,10 @@
+# Local-only files — never upload these to Vercel.
+# (Root index.php does not exist on purpose: on Vercel it would be served
+#  as a static file instead of executing, and the catch-all rewrite in
+#  vercel.json already routes "/" to the single function.)
+README.md
+database.sql
+.env.example
+.env
+.htaccess
+build

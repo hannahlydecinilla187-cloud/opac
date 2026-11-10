@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * OPAC — public JSON search endpoint.
  *
- * GET /api/search.php?q=&category=&sort=&page=
+ * GET /search.json?q=&category=&sort=&page=
  * Returns { ok, total, page, pages, books: [...] }
  */
 

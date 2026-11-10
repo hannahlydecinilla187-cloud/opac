@@ -1,38 +1,28 @@
-# OPAC — Apache (XAMPP) rewrite rules
-# Mirrors vercel.json so the same pretty URLs work locally and on Vercel.
+# OPAC — Apache (XAMPP) rewrite rules.
+# Mirrors vercel.json: one front controller (api/index.php) for every
+# pretty URL; REQUEST_URI keeps the original path for the router.
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Serve existing files/directories directly (assets, api files, etc.)
+    # ------------------------------------------------------------------
+    # Block direct browser requests into /api/ (raw PHP sources).
+    # THE_REQUEST is the ORIGINAL client request line and is NOT changed
+    # by the internal rewrite below, so only real /api URLs are blocked.
+    # Mirrors vercel.json's "/api/(.*) -> /" redirect.
+    # ------------------------------------------------------------------
+    RewriteCond %{THE_REQUEST} \s[^?#]*/api(/|\?|\s)
+    RewriteRule ^ - [F]
+
+    # Root must be routed BEFORE the -f/-d pass-through below, otherwise
+    # "/" falls through to mod_dir (directory index / listing).
+    RewriteRule ^$ api/index.php [L,QSA]
+
+    # Serve existing files/directories directly (assets, offline edition).
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # / -> catalog (api/index.php)
-    RewriteRule ^$ api/index.php [L,QSA]
-
-    # /search -> search catalog page
-    RewriteRule ^search/?$ api/catalog.php [L,QSA]
-
-    # /browse -> browse books page
-    RewriteRule ^browse/?$ api/browse.php [L,QSA]
-
-    # /account -> my account page
-    RewriteRule ^account/?$ api/account.php [L,QSA]
-
-    # /about -> about page
-    RewriteRule ^about/?$ api/about.php [L,QSA]
-
-    # /book/{id} -> book detail
-    RewriteRule ^book/([0-9]+)/?$ api/book.php?id=$1 [L,QSA]
-
-    # /admin -> admin dashboard
-    RewriteRule ^admin/?$ api/admin/dashboard.php [L,QSA]
-
-    # /admin/login
-    RewriteRule ^admin/login/?$ api/admin/login.php [L,QSA]
-
-    # /admin/logout
-    RewriteRule ^admin/logout/?$ api/admin/logout.php [L,QSA]
+    # Everything else -> single front controller (like the Vercel catch-all).
+    RewriteRule ^(.*)$ api/index.php [L,QSA]
 </IfModule>

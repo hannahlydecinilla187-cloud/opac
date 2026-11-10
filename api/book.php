@@ -29,7 +29,7 @@ if (!$book) {
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
-                <i class="bi bi-book-x display-1 text-secondary"></i>
+                <i class="bi bi-journal-x display-1 text-secondary"></i>
                 <h1 class="h3 mt-3">Book not found</h1>
                 <p class="text-muted">The book you are looking for does not exist or has been removed.</p>
                 <a href="<?= e(url('/')) ?>" class="btn btn-primary">

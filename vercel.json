@@ -1,21 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
-    "api/**/*.php": {
+    "api/index.php": {
       "runtime": "vercel-php@0.9.0",
       "memory": 1024,
       "maxDuration": 15
     }
   },
+  "redirects": [
+    { "source": "/api/(.*)", "destination": "/" }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/api/index.php" },
-    { "source": "/search", "destination": "/api/catalog.php" },
-    { "source": "/browse", "destination": "/api/browse.php" },
-    { "source": "/account", "destination": "/api/account.php" },
-    { "source": "/about", "destination": "/api/about.php" },
-    { "source": "/book/:id", "destination": "/api/book.php?id=:id" },
-    { "source": "/admin", "destination": "/api/admin/dashboard.php" },
-    { "source": "/admin/login", "destination": "/api/admin/login.php" },
-    { "source": "/admin/logout", "destination": "/api/admin/logout.php" }
+    { "source": "/(.*)", "destination": "/api/index.php" }
   ]
 }

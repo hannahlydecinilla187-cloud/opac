@@ -4,8 +4,8 @@ declare(strict_types=1);
 /**
  * OPAC — admin books CRUD (JSON API).
  *
- * GET  /api/admin/books.php                     -> list all books
- * POST /api/admin/books.php  {action:create|update|delete, ...}
+ * GET  /admin/books.json                     -> list all books
+ * POST /admin/books.json  {action:create|update|delete, ...}
  *
  * Requires a signed admin session cookie.
  */

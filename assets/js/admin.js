@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    const API = `${window.APP_BASE}/api/admin/books.php`;
+    const API = `${window.APP_BASE}/admin/books.json`;
 
     const escapeHtml = (s) => String(s ?? '')
         .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')

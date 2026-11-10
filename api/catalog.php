@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * OPAC — Search Catalog page.  GET /search
  *
- * Client-side search (catalog.js) against api/search.php.
+ * Client-side search (catalog.js) against /search.json.
  * Deep links supported: /search?q=...&category=...&sort=...&page=...
  */
 

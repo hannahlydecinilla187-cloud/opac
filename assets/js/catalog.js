@@ -121,7 +121,7 @@
             q: state.q, category: state.category, sort: state.sort, page: String(state.page),
         });
         try {
-            const res = await fetch(`${window.APP_BASE}/api/search.php?${params}`);
+            const res = await fetch(`${window.APP_BASE}/search.json?${params}`);
             const data = await res.json();
             if (!res.ok || !data.ok) {
                 throw new Error(data.message || 'Search failed.');

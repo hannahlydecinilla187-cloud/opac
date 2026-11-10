@@ -5,7 +5,7 @@ declare(strict_types=1);
  * OPAC — Browse Books page.  GET /browse
  *
  * Category chips + grid, driven by catalog.js (browse mode) against
- * api/search.php.  Deep links supported: /browse?category=...&sort=...
+ * /search.json.  Deep links supported: /browse?category=...&sort=...
  */
 
 require_once __DIR__ . '/includes/config.php';

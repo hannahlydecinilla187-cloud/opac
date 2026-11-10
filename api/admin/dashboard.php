@@ -5,7 +5,7 @@ declare(strict_types=1);
  * OPAC — admin dashboard.  GET /admin
  *
  * Server-rendered page; book CRUD is handled client-side (admin.js) against
- * api/admin/books.php (JSON) with SweetAlert2 confirmations and feedback.
+ * /admin/books.json (JSON) with SweetAlert2 confirmations and feedback.
  */
 
 require_once __DIR__ . '/../includes/config.php';
