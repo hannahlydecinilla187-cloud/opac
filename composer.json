@@ -1,0 +1,12 @@
+{
+  "name": "tagoloan/opac",
+  "description": "TAGOLOAN COMMUNITY COLLEGE Library OPAC - PHP + MySQL catalog",
+  "require": {
+    "php": ">=8.1",
+    "ext-pdo_mysql": "*",
+    "ext-mbstring": "*"
+  },
+  "scripts": {
+    "start": "php -S 0.0.0.0:$PORT router.php"
+  }
+}

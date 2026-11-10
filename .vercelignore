@@ -8,3 +8,7 @@ database.sql
 .env
 .htaccess
 build
+# Railway-only deployment files (railway.json, router.php, composer.json)
+railway.json
+router.php
+composer.json

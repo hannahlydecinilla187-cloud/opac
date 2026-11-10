@@ -48,7 +48,10 @@ database).
 ├── tcc-opac.html           # offline single-file edition (see below)
 ├── database.sql            # schema + seed data (12 books, 1 admin)
 ├── .htaccess               # XAMPP/Apache routing (mirrors vercel.json)
-└── vercel.json             # Vercel config (single function + catch-all rewrite)
+├── vercel.json             # Vercel config (single function + catch-all rewrite)
+├── railway.json            # Railway config (Nixpacks + php -S start command)
+├── router.php              # router for php -S (Railway) — assets + front controller
+└── composer.json           # marks the language for Nixpacks + required PHP extensions
 ```
 
 ## Local setup (XAMPP)
@@ -176,6 +179,36 @@ The connection code reads Railway's variables automatically
 > archived in late 2026, but published versions like `0.9.0` keep working).
 > For new projects, Vercel recommends the Docker alternative —
 > [Deploy PHP on Vercel with Docker](https://vercel.com/kb/guide/deploy-php-on-vercel-with-docker).
+
+# Deploying to Railway (app + MySQL in one place)
+
+The repo also deploys to Railway as a **PHP service** — useful if you want the
+app and the database on the same platform. Three small files make it work:
+
+| File | Purpose |
+|---|---|
+| `railway.json` | Tells Railway to build with **Nixpacks** and start `php -S 0.0.0.0:$PORT router.php` |
+| `composer.json` | Makes Nixpacks detect **PHP** (it needs `composer.json` or a root `index.php` to know the language) and installs the required extensions (`pdo_mysql`, `mbstring`) |
+| `router.php` | Router for PHP's built-in server — serves `/assets/*` + `tcc-opac.html` directly, blocks raw `/api/*` URLs, and sends every page through the same single front controller used on Vercel |
+
+**Setup:**
+
+1. In your Railway project, add a service from the **GitHub repo** (the
+   `railway.json` + `composer.json` + `router.php` files do the rest —
+   no build command needed).
+2. **MySQL in the same project**: if your MySQL service lives in the same
+   Railway project, the connection variables (`MYSQLHOST`, `MYSQLPORT`,
+   `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE`) are injected automatically
+   and the private `mysql.railway.internal` host **is reachable** —
+   `api/includes/config.php` picks them up with zero configuration.
+3. Set a `SESSION_SECRET` service variable (a long random string).
+4. Optional but recommended for traffic: set `PHP_CLI_SERVER_WORKERS=8` as a
+   service variable — PHP's built-in server is single-threaded by default;
+   this gives it multiple worker processes.
+
+> The PHP built-in server (`php -S`) is a development-grade server; for a
+> small catalog it performs fine, but for heavier traffic consider Vercel
+> (above) or a container with Apache/Nginx + PHP-FPM.
 
 ## Security notes
 
