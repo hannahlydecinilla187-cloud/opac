@@ -27,13 +27,16 @@ $categories = db()->query(
      GROUP BY category ORDER BY n DESC, category LIMIT 12'
 )->fetchAll();
 
-layout_header('Home — Online Public Access Catalog', ['active' => 'home']);
+layout_header('Home — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'home']);
 ?>
 <section class="hero">
     <div class="container">
         <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <h1 class="display-5 mb-2">Welcome to the library catalog</h1>
+            <div class="col-lg-9">
+                <p class="text-uppercase fw-semibold mb-2" style="font-size:.8rem; letter-spacing:.18em;">
+                    Library &middot; Online Public Access Catalog
+                </p>
+                <h1 class="display-6 mb-2">TAGOLOAN COMMUNITY COLLEGE</h1>
                 <p class="lead mb-4 opacity-75">
                     Search the collection, browse the shelves, and check what's available — before you visit the desk.
                 </p>
@@ -46,10 +49,10 @@ layout_header('Home — Online Public Access Catalog', ['active' => 'home']);
                         </div>
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-light btn-lg px-4">Search</button>
+                        <button type="submit" class="btn btn-primary btn-lg px-4">Search</button>
                     </div>
                 </form>
-                <a href="<?= e(url('/browse')) ?>" class="btn btn-outline-light btn-lg">
+                <a href="<?= e(url('/browse')) ?>" class="btn btn-outline-primary btn-lg">
                     <i class="bi bi-journals me-1"></i>Browse Books
                 </a>
             </div>

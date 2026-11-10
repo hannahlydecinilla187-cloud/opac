@@ -88,7 +88,12 @@ function book_card_html(array $book): string
                 </div>
                 <a class="book-title text-decoration-none" href="<?= $detail ?>"><?= $title ?></a>
                 <div class="text-muted small"><?= $author ?></div>
-                <div class="mt-auto pt-2"><?= $badge ?></div>
+                <div class="mt-auto pt-2 d-flex justify-content-between align-items-center gap-2">
+                    <?= $badge ?>
+                    <a class="btn btn-sm btn-outline-primary flex-shrink-0" href="<?= $detail ?>">
+                        View details <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

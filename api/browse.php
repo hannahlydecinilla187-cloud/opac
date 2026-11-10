@@ -21,7 +21,7 @@ $categories = db()->query(
 
 $initialCategory = trim((string) ($_GET['category'] ?? ''));
 
-layout_header('Browse Books — Online Public Access Catalog', ['active' => 'browse']);
+layout_header('Browse Books — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'browse']);
 ?>
 <section class="bg-white border-bottom py-5">
     <div class="container">

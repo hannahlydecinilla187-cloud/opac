@@ -6,7 +6,7 @@ declare(strict_types=1);
  */
 
 /** @param array{active?:string,scripts?:array<int,string>} $opts */
-function layout_header(string $title = 'Online Public Access Catalog', array $opts = []): void
+function layout_header(string $title = 'TAGOLOAN COMMUNITY COLLEGE Library OPAC', array $opts = []): void
 {
     $active = (string) ($opts['active'] ?? '');
     $admin  = current_admin();
@@ -41,8 +41,8 @@ function layout_header(string $title = 'Online Public Access Catalog', array $op
         <a class="navbar-brand d-flex align-items-center gap-2 py-1" href="<?= e(url('/')) ?>">
             <i class="bi bi-journals fs-3 lh-1"></i>
             <span class="brand-text">
-                <span class="brand-line">Online Public</span>
-                <span class="brand-line brand-line-2">Access Catalog</span>
+                <span class="brand-line">TAGOLOAN COMMUNITY COLLEGE</span>
+                <span class="brand-line brand-line-2">Library OPAC</span>
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -86,7 +86,7 @@ function layout_footer(array $opts = []): void
     ?>
 </main>
 <footer class="site-footer text-center text-muted small py-4 mt-auto">
-    Online Public Access Catalog &middot; built with PHP, MySQL, Bootstrap &amp; SweetAlert2
+    TAGOLOAN COMMUNITY COLLEGE &middot; Library OPAC &middot; built with PHP, MySQL, Bootstrap &amp; SweetAlert2
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>

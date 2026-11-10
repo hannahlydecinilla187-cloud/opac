@@ -35,7 +35,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
 $admin = current_admin();
 
-layout_header('My Account — Online Public Access Catalog', ['active' => 'account']);
+layout_header('My Account — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'account']);
 
 if ($admin === null) {
     // Guest — show the sign-in form.

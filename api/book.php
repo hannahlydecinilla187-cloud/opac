@@ -24,7 +24,7 @@ if ($stmt) {
 
 if (!$book) {
     http_response_code(404);
-    layout_header('Book not found — Online Public Access Catalog', ['active' => 'catalog']);
+    layout_header('Book not found — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'catalog']);
     ?>
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -44,7 +44,7 @@ if (!$book) {
 }
 
 $availability = availability($book);
-layout_header($book['title'] . ' — Online Public Access Catalog', ['active' => 'browse']);
+layout_header($book['title'] . ' — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'browse']);
 ?>
 <div class="container py-4">
     <nav aria-label="breadcrumb">

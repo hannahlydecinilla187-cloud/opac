@@ -58,7 +58,12 @@
                     </div>
                     <a class="book-title text-decoration-none" href="${detailUrl}">${escapeHtml(book.title)}</a>
                     <div class="text-muted small">${escapeHtml(book.author)}</div>
-                    <div class="mt-auto pt-2">${availabilityBadge(book)}</div>
+                    <div class="mt-auto pt-2 d-flex justify-content-between align-items-center gap-2">
+                        ${availabilityBadge(book)}
+                        <a class="btn btn-sm btn-outline-primary flex-shrink-0" href="${detailUrl}">
+                            View details <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>`;

@@ -36,7 +36,7 @@ if (is_admin()) {
     redirect(url('/admin'));
 }
 
-layout_header('Admin login — Online Public Access Catalog', ['active' => 'account']);
+layout_header('Admin login — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'account']);
 $loginOpts = ['title' => 'Admin login', 'subtitle' => 'Sign in to manage the catalog'];
 include __DIR__ . '/../includes/login-form.php';
 layout_footer();

@@ -1,91 +1,108 @@
 /* ==========================================================================
-   OPAC — custom styles (on top of Bootstrap 5)
+   TAGOLOAN COMMUNITY COLLEGE — Library OPAC (on top of Bootstrap 5)
+   Theme: red + yellow/gold
    ========================================================================== */
 
 :root {
-    --opac-primary: #7c3aed;
-    --opac-dark: #3b2b63;
+    --opac-red: #a51e22;         /* main red */
+    --opac-red-dark: #7a1416;    /* deep red — header, headings */
+    --opac-red-darker: #5c0f11;  /* hover / pressed */
+    --opac-gold: #f5c518;        /* yellow accent */
+    --opac-gold-soft: #fff8e1;   /* soft yellow background */
 }
 
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f6f5fb;
+    background-color: #faf7f0;   /* warm off-white */
 }
 
-/* Navbar — solid color (no gradient, no transparency) */
+/* ------------------------------- Links ----------------------------------- */
+a {
+    color: var(--opac-red);
+}
+
+a:hover {
+    color: var(--opac-red-darker);
+}
+
+/* ------------------------------- Navbar ---------------------------------- */
+/* Solid deep red — no gradient, no transparency */
 .bg-opac {
-    background-color: var(--opac-dark);
+    background-color: var(--opac-red-dark);
 }
 
 .navbar-brand:hover {
-    opacity: .9;
+    opacity: .95;
 }
 
 /* Stacked two-line brand */
 .brand-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.12;
+    line-height: 1.15;
 }
 
 .brand-line {
-    font-size: .95rem;
+    font-size: .82rem;
     font-weight: 700;
-    letter-spacing: .01em;
+    letter-spacing: .03em;
     white-space: nowrap;
+    color: #fff;
 }
 
 .brand-line-2 {
-    font-size: .76rem;
-    font-weight: 500;
-    letter-spacing: .05em;
-    opacity: .82;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
     white-space: nowrap;
+    color: var(--opac-gold);
 }
 
 /* Stacked two-line nav item (admin logout) */
 .nav-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.12;
+    line-height: 1.15;
 }
 
 .nav-line {
-    font-size: .95rem;
+    font-size: .82rem;
     font-weight: 600;
-    letter-spacing: .01em;
+    letter-spacing: .03em;
     white-space: nowrap;
 }
 
 .nav-line-2 {
-    font-size: .76rem;
+    font-size: .66rem;
     font-weight: 400;
-    letter-spacing: .03em;
-    opacity: .82;
+    letter-spacing: .05em;
     white-space: nowrap;
+    color: var(--opac-gold);
 }
 
-/* ------------------------------- Hero ------------------------------------ */
+/* --------------------------------- Hero ---------------------------------- */
 .hero {
-    background-color: var(--opac-dark);
-    color: #fff;
+    background-color: var(--opac-gold-soft);
+    color: var(--opac-red-dark);
     padding: 3rem 0 3.5rem;
+    border-bottom: 3px solid var(--opac-gold);
 }
 
 .hero h1 {
     font-weight: 700;
-    letter-spacing: -.02em;
+    letter-spacing: -.01em;
 }
 
 .search-card {
     border: 0;
     border-radius: 1rem;
-    box-shadow: 0 1rem 2rem rgba(36, 27, 53, .25);
+    box-shadow: 0 1rem 2rem rgba(122, 20, 22, .18);
 }
 
-/* ------------------------------- Catalog --------------------------------- */
+/* ------------------------------- Book cards ------------------------------- */
 .book-card {
     border: 0;
     border-radius: .9rem;
@@ -96,7 +113,7 @@ body {
 
 .book-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 .75rem 1.5rem rgba(36, 27, 53, .15);
+    box-shadow: 0 .75rem 1.5rem rgba(122, 20, 22, .15);
 }
 
 .book-card .card-body {
@@ -106,13 +123,13 @@ body {
 }
 
 .book-title {
-    color: var(--opac-dark);
+    color: var(--opac-red-dark);
     font-weight: 600;
     line-height: 1.3;
 }
 
 .book-title:hover {
-    color: var(--opac-primary);
+    color: var(--opac-red);
 }
 
 .result-count {
@@ -126,8 +143,8 @@ body {
 }
 
 .category-chip.active {
-    background-color: var(--opac-primary);
-    border-color: var(--opac-primary);
+    background-color: var(--opac-red);
+    border-color: var(--opac-red);
     color: #fff;
 }
 
@@ -141,10 +158,11 @@ body {
     border-radius: .5rem;
     margin: 0 .15rem;
     border: 0;
+    color: var(--opac-red);
 }
 
 .pagination .page-item.active .page-link {
-    background: var(--opac-primary);
+    background: var(--opac-red);
     color: #fff;
 }
 
@@ -171,8 +189,52 @@ body {
     font-size: 1.25rem;
 }
 
+/* --------------------- Bootstrap theme -> red / gold --------------------- */
+.btn-primary {
+    --bs-btn-bg: var(--opac-red);
+    --bs-btn-border-color: var(--opac-red);
+    --bs-btn-hover-bg: var(--opac-red-darker);
+    --bs-btn-hover-border-color: var(--opac-red-darker);
+    --bs-btn-active-bg: var(--opac-red-darker);
+    --bs-btn-active-border-color: var(--opac-red-darker);
+    --bs-btn-disabled-bg: var(--opac-red);
+    --bs-btn-disabled-border-color: var(--opac-red);
+    --bs-btn-focus-shadow-rgb: 165, 30, 34;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--opac-red);
+    --bs-btn-border-color: var(--opac-red);
+    --bs-btn-hover-bg: var(--opac-red);
+    --bs-btn-hover-border-color: var(--opac-red);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--opac-red-darker);
+    --bs-btn-active-border-color: var(--opac-red-darker);
+    --bs-btn-active-color: #fff;
+    --bs-btn-focus-shadow-rgb: 165, 30, 34;
+}
+
+.text-primary {
+    color: var(--opac-red) !important;
+}
+
+.text-bg-primary {
+    background-color: var(--opac-red) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--opac-red);
+    box-shadow: 0 0 0 .25rem rgba(165, 30, 34, .2);
+}
+
+/* SweetAlert confirm buttons — brand red */
+.swal2-popup .swal2-confirm.swal2-styled {
+    background-color: var(--opac-red) !important;
+}
+
 /* Footer */
 .site-footer {
     background: #fff;
-    border-top: 1px solid #ececf3;
+    border-top: 1px solid #f0e6d2;
 }

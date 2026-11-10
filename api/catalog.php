@@ -17,7 +17,7 @@ $categories = db()
     ->query('SELECT DISTINCT category FROM books WHERE category IS NOT NULL AND category <> "" ORDER BY category')
     ->fetchAll(PDO::FETCH_COLUMN);
 
-layout_header('Search Catalog — Online Public Access Catalog', ['active' => 'search']);
+layout_header('Search Catalog — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'search']);
 ?>
 <section class="hero">
     <div class="container">

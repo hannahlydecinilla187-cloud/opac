@@ -10,18 +10,18 @@ require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/layout.php';
 
-layout_header('About — Online Public Access Catalog', ['active' => 'about']);
+layout_header('About — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'about']);
 ?>
 <section class="bg-white border-bottom">
     <div class="container py-5">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
                 <i class="bi bi-journals display-4 text-primary"></i>
-                <h1 class="mt-3 mb-2">About this catalog</h1>
+                <h1 class="mt-3 mb-2">About the library catalog</h1>
                 <p class="text-muted mb-0 lead" style="font-size: 1.05rem !important;">
-                    This Online Public Access Catalog (OPAC) lets visitors explore the library
-                    collection from anywhere — search for a specific title, browse by category,
-                    and check availability before you visit the desk.
+                    The TAGOLOAN COMMUNITY COLLEGE Library's Online Public Access Catalog (OPAC) lets
+                    visitors explore the collection from anywhere — search for a specific title, browse
+                    by category, and check availability before you visit the desk.
                 </p>
             </div>
         </div>

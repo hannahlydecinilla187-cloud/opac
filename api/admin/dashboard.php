@@ -29,7 +29,7 @@ $categories = db()
     ->query('SELECT DISTINCT category FROM books WHERE category IS NOT NULL AND category <> "" ORDER BY category')
     ->fetchAll(PDO::FETCH_COLUMN);
 
-layout_header('Dashboard — Online Public Access Catalog', ['active' => 'account']);?>
+layout_header('Dashboard — TAGOLOAN COMMUNITY COLLEGE Library OPAC', ['active' => 'account']);?>
 <div class="container py-4">
 
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
