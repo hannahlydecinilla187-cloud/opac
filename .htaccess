@@ -1,0 +1,38 @@
+# OPAC — Apache (XAMPP) rewrite rules
+# Mirrors vercel.json so the same pretty URLs work locally and on Vercel.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve existing files/directories directly (assets, api files, etc.)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # / -> catalog (api/index.php)
+    RewriteRule ^$ api/index.php [L,QSA]
+
+    # /search -> search catalog page
+    RewriteRule ^search/?$ api/catalog.php [L,QSA]
+
+    # /browse -> browse books page
+    RewriteRule ^browse/?$ api/browse.php [L,QSA]
+
+    # /account -> my account page
+    RewriteRule ^account/?$ api/account.php [L,QSA]
+
+    # /about -> about page
+    RewriteRule ^about/?$ api/about.php [L,QSA]
+
+    # /book/{id} -> book detail
+    RewriteRule ^book/([0-9]+)/?$ api/book.php?id=$1 [L,QSA]
+
+    # /admin -> admin dashboard
+    RewriteRule ^admin/?$ api/admin/dashboard.php [L,QSA]
+
+    # /admin/login
+    RewriteRule ^admin/login/?$ api/admin/login.php [L,QSA]
+
+    # /admin/logout
+    RewriteRule ^admin/logout/?$ api/admin/logout.php [L,QSA]
+</IfModule>
